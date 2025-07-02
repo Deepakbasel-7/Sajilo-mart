@@ -1,0 +1,617 @@
+{% extends 'base.html' %} {% block title %} Home {% endblock %} {% block body %}
+
+<style>
+  .profile-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .profile-welcome {
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .profile-welcome h3 {
+    color: goldenrod;
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(177, 224, 9, 0.37);
+  }
+
+  .admin-welcome h3 {
+    color: #dc2626;
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(220, 38, 38, 0.1);
+  }
+
+  /* Admin badge with better visibility */
+  .admin-badge {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(135deg, #dc2626 0%, #f59e0b 100%);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 700;
+    margin-left: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .admin-nav-btn {
+    background: linear-gradient(135deg, #dc2626 0%, #f59e0b 100%) !important;
+  }
+
+  .admin-nav-btn:hover {
+    box-shadow: 0 10px 25px rgba(220, 38, 38, 0.4) !important;
+  }
+
+  .admin-avatar {
+    background: linear-gradient(135deg, #dc2626 0%, #f59e0b 100%) !important;
+    box-shadow: 0 8px 20px rgba(220, 38, 38, 0.4) !important;
+  }
+
+  .username-highlight {
+    text-transform: capitalize;
+    position: relative;
+    display: inline-block;
+    color: #1f2937;
+    font-weight: 700;
+    padding: 4px 8px;
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
+    border-radius: 8px;
+    border: 2px solid rgba(79, 70, 229, 0.2);
+  }
+
+  .admin-welcome .username-highlight {
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.1) 0%, rgba(245, 158, 11, 0.1) 100%);
+    border: 2px solid rgba(220, 38, 38, 0.2);
+  }
+
+  .username-highlight::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 8px;
+    right: 8px;
+    height: 3px;
+    background: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%);
+    border-radius: 2px;
+    transform: scaleX(0);
+    animation: underlineExpand 1s ease-out 0.5s forwards;
+  }
+
+  .admin-welcome .username-highlight::after {
+    background: linear-gradient(135deg, #dc2626 0%, #f59e0b 100%);
+  }
+
+  @keyframes underlineExpand {
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  .profile-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .sidebar {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: sticky;
+    top: 20px;
+  }
+
+  .sidebar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .sidebar-nav li {
+    margin-bottom: 15px;
+  }
+
+  .sidebar-nav li:last-child {
+    margin-bottom: 0;
+  }
+
+  .nav-btn {
+    display: block;
+    width: 100%;
+    padding: 16px 24px;
+    background: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nav-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: left 0.5s;
+  }
+
+  .nav-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(79, 70, 229, 0.4);
+    color: white;
+    text-decoration: none;
+  }
+
+  .nav-btn:hover::before {
+    left: 100%;
+  }
+
+  .nav-btn.active {
+    background: linear-gradient(135deg, #9333ea 0%, #4f46e5 100%);
+    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.4);
+  }
+
+  .profile-content {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    min-height: 400px;
+  }
+
+  .profile-card {
+    background: linear-gradient(
+      135deg,
+      rgba(79, 70, 229, 0.05) 0%,
+      rgba(147, 51, 234, 0.05) 100%
+    );
+    border: 2px solid rgba(79, 70, 229, 0.15);
+    border-radius: 16px;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .profile-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%);
+  }
+
+  .profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.4);
+  }
+
+  .profile-info h3 {
+    color: #1f2937;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .profile-info p {
+    color: #4b5563;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .info-icon {
+    width: 20px;
+    height: 20px;
+    opacity: 0.8;
+    fill: #4f46e5;
+  }
+
+  .profile-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+  }
+
+  .stat-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    border: 2px solid rgba(79, 70, 229, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.15);
+    border-color: rgba(79, 70, 229, 0.2);
+  }
+
+  .stat-number {
+    font-size: 24px;
+    font-weight: 700;
+    color: #4f46e5;
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: #6b7280;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+  }
+
+  /* Admin-specific stat cards */
+  .admin-welcome .stat-card:hover {
+    box-shadow: 0 8px 20px rgba(220, 38, 38, 0.15);
+    border-color: rgba(220, 38, 38, 0.2);
+  }
+
+  .admin-welcome .stat-number {
+    color: #dc2626;
+  }
+
+  @media (max-width: 768px) {
+    .profile-layout {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .sidebar {
+      position: static;
+      padding: 20px;
+    }
+
+    .sidebar-nav {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+    }
+
+    .sidebar-nav li {
+      margin-bottom: 0;
+      flex-shrink: 0;
+    }
+
+    .nav-btn {
+      white-space: nowrap;
+      min-width: 140px;
+    }
+
+    .profile-content {
+      padding: 25px;
+    }
+
+    .profile-welcome h3 {
+      font-size: 28px;
+    }
+
+    .admin-badge {
+      display: block;
+      margin: 10px auto 0;
+      width: fit-content;
+    }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .fade-in:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .fade-in:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<div class="profile-container">
+  <div
+    class="profile-welcome fade-in {% if customer.id == 3 %}admin-welcome{% endif %}"
+  >
+    <h3>
+      Welcome <span class="username-highlight">{{ customer.username }}</span>
+      {% if customer.id == 3 %}
+      <span class="admin-badge">
+        <svg
+          style="width: 14px; height: 14px; margin-right: 4px"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M9.504 1.132a1 1 0 01.992 0l1.75 1a1 1 0 11-.992 1.736L10 3.152l-1.254.716a1 1 0 11-.992-1.736l1.75-1zM5.618 4.504a1 1 0 01-.372 1.364L5.016 6l.23.132a1 1 0 11-.992 1.736L4 7.723V8a1 1 0 01-2 0V6a.996.996 0 01.52-.878l1.734-.99a1 1 0 011.364.372zm8.764 0a1 1 0 011.364-.372l1.733.99A1.002 1.002 0 0118 6v2a1 1 0 11-2 0v-.277l-.254.145a1 1 0 11-.992-1.736l.23-.132-.23-.132a1 1 0 01-.372-1.364zm-7 4a1 1 0 011.364-.372L10 8.848l1.254-.716a1 1 0 11.992 1.736L11 10.573V12a1 1 0 11-2 0v-1.427l-1.246-.705a1 1 0 01-.372-1.364zM3 11a1 1 0 011 1v1.427l1.246.705a1 1 0 01-.992 1.736l-1.75-1A1 1 0 012 14v-2a1 1 0 011-1zm14 0a1 1 0 011 1v2a1.002 1.002 0 01-.504.868l-1.75 1a1 1 0 11-.992-1.736L16 13.427V12a1 1 0 011-1zm-9.618 5.504a1 1 0 011.364-.372l.254.145V16a1 1 0 112 0v.277l.254-.145a1 1 0 11.992 1.736l-1.735.992a.995.995 0 01-1.022 0l-1.735-.992a1 1 0 01-.372-1.364z"
+            clip-rule="evenodd"
+          />
+        </svg>
+        Admin
+      </span>
+      {% endif %}
+    </h3>
+  </div>
+
+  <div class="profile-layout">
+    <div class="sidebar fade-in">
+      <ul class="sidebar-nav">
+        <li>
+          <a
+            href="#"
+            class="nav-btn active {% if customer.id == 3 %}admin-nav-btn{% endif %}"
+          >
+            <svg
+              class="info-icon"
+              style="display: inline; margin-right: 8px"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            Profile
+          </a>
+        </li>
+        <li>
+          <a
+            href="/change-password/{{ customer.id }}"
+            class="nav-btn {% if customer.id == 3 %}admin-nav-btn{% endif %}"
+          >
+            <svg
+              class="info-icon"
+              style="display: inline; margin-right: 8px"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            Change Password
+          </a>
+        </li>
+        {% if customer.id == 3 %}
+        <li>
+          <a href="/view-orders" class="nav-btn admin-nav-btn">
+            <svg
+              class="info-icon"
+              style="display: inline; margin-right: 8px"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"
+              />
+            </svg>
+          View Orders
+          </a>
+        </li>
+        <li>
+          <a href="/customers" class="nav-btn admin-nav-btn">
+            <svg
+              class="info-icon"
+              style="display: inline; margin-right: 8px"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"
+              />
+            </svg>
+           Customers
+          </a>
+        </li>
+        <li>
+          <a href="/add-shop-items" class="nav-btn admin-nav-btn">
+            <svg
+              class="info-icon"
+              style="display: inline; margin-right: 8px"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10 2L3 7v11a1 1 0 001 1h3v-8h6v8h3a1 1 0 001-1V7l-7-5z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            Add Products
+          </a>
+        </li>
+        <li>
+          <a href="/shop-items" class="nav-btn admin-nav-btn">
+            <svg
+              class="info-icon"
+              style="display: inline; margin-right: 8px"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            Manage Products
+          </a>
+        </li>
+            <li>
+          <a href="/view-messages" class="nav-btn admin-nav-btn">
+            <svg
+              class="info-icon"
+              style="display: inline; margin-right: 8px"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            View Messages
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+
+    <div class="profile-content fade-in">
+      <div class="profile-card">
+        <div
+          class="profile-avatar {% if customer.id == 3 %}admin-avatar{% endif %}"
+        >
+          {% if customer.id == 3 %}
+          <svg
+            style="width: 40px; height: 40px"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M9.504 1.132a1 1 0 01.992 0l1.75 1a1 1 0 11-.992 1.736L10 3.152l-1.254.716a1 1 0 11-.992-1.736l1.75-1zM5.618 4.504a1 1 0 01-.372 1.364L5.016 6l.23.132a1 1 0 11-.992 1.736L4 7.723V8a1 1 0 01-2 0V6a.996.996 0 01.52-.878l1.734-.99a1 1 0 011.364.372zm8.764 0a1 1 0 011.364-.372l1.733.99A1.002 1.002 0 0118 6v2a1 1 0 11-2 0v-.277l-.254.145a1 1 0 11-.992-1.736l.23-.132-.23-.132a1 1 0 01-.372-1.364zm-7 4a1 1 0 011.364-.372L10 8.848l1.254-.716a1 1 0 11.992 1.736L11 10.573V12a1 1 0 11-2 0v-1.427l-1.246-.705a1 1 0 01-.372-1.364zM3 11a1 1 0 011 1v1.427l1.246.705a1 1 0 01-.992 1.736l-1.75-1A1 1 0 012 14v-2a1 1 0 011-1zm14 0a1 1 0 011 1v2a1.002 1.002 0 01-.504.868l-1.75 1a1 1 0 11-.992-1.736L16 13.427V12a1 1 0 011-1zm-9.618 5.504a1 1 0 011.364-.372l.254.145V16a1 1 0 112 0v.277l.254-.145a1 1 0 11.992 1.736l-1.735.992a.995.995 0 01-1.022 0l-1.735-.992a1 1 0 01-.372-1.364z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          {% else %} {{ customer.username[0].upper() }} {% endif %}
+        </div>
+
+        <div class="profile-info">
+          <h3>
+            <svg class="info-icon" viewBox="0 0 20 20">
+              <path
+                fill-rule="evenodd"
+                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            {{ customer.username }} {% if customer.id == 3 %}
+            <span style="font-size: 14px; color: #dc2626; font-weight: 600"
+              >(Administrator)</span
+            >
+            {% endif %}
+          </h3>
+          <p>
+            <svg class="info-icon" viewBox="0 0 20 20">
+              <path
+                d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+              />
+              <path
+                d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+              />
+            </svg>
+            Email: {{ customer.email }}
+          </p>
+        </div>
+
+        <div class="profile-stats">
+          {% if customer.id == 3 %}
+          <div class="stat-card">
+            <span class="stat-number">Admin</span>
+            <span class="stat-label">Role</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">Full</span>
+            <span class="stat-label">Access</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">System</span>
+            <span class="stat-label">Manager</span>
+          </div>
+          {% else %}
+          <div class="stat-card">
+            <span class="stat-number">Customer</span>
+            <span class="stat-label">Role</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">Active</span>
+            <span class="stat-label">Status</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">Member</span>
+            <span class="stat-label">Type</span>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Add smooth transitions on page load
+  document.addEventListener("DOMContentLoaded", function () {
+    const elements = document.querySelectorAll(".fade-in");
+    elements.forEach((element, index) => {
+      element.style.opacity = "0";
+      element.style.transform = "translateY(20px)";
+      setTimeout(() => {
+        element.style.transition = "all 0.6s ease";
+        element.style.opacity = "1";
+        element.style.transform = "translateY(0)";
+      }, index * 200);
+    });
+  });
+</script>
+
+{% endblock %}

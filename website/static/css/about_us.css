@@ -1,0 +1,102 @@
+/* Overall Styling */
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f7f7f7;
+}
+
+/* Container for main content */
+.about-us-container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Header styling */
+.about-us-container h2 {
+    font-size: 3rem;
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 30px;
+}
+
+/* Mission, History, and Values Section */
+.mission-section, .history-section, .values-section {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mission-section h3, .history-section h3, .values-section h3 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.mission-section p, .history-section p, .values-section ul {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #666;
+}
+
+.values-section ul {
+    padding-left: 20px;
+}
+
+.values-section li {
+    margin-bottom: 10px;
+}
+
+/* Team Section */
+.team-section {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.team-section h3 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.team-members {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.team-member {
+    text-align: center;
+    width: 200px;
+    margin: 15px;
+    transition: transform 0.3s ease;
+}
+
+.team-member:hover {
+    transform: scale(1.05);
+}
+
+.team-member img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.team-member h4 {
+    font-size: 1.3rem;
+    color: #007bff;
+    margin: 10px 0 5px 0;
+}
+
+.team-member p {
+    font-size: 1rem;
+    color: #666;
+}

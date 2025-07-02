@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block body %}
+<div class="container text-center">
+    <div class="row" style="margin: 10px;">
+
+        
+        <!-- Dynamic Categories -->
+        <div class="col" style="margin: 3px;">
+            <div class="list-group" id="right1">
+                {% for category in categories %}
+                <a href="/category/{{ category.id }}" class="list-group-item list-group-item-action">
+                    <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                    <span class="link-name">{{ category.name }}</span>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Center GIF Section -->
+        <div class="col-md-7" style="margin: 3px;">
+            <img src="../static/images/center.gif" alt="" style="width: 600px; height: 365px; border-radius: 10px;">
+        </div>
+
+        <!-- Right-Side Features Section -->
+        <div class="col-md-2">
+            <div class="row" style="background-color: white; border-radius: 10px; padding: 10px;">
+                <div class="row" style="display: flex; margin-top: 5px;">
+                    <div class="col">
+                        <img src="../static/images/help.png" alt="" style="width: 30px; height: 30px;">
+                    </div>
+                    <div class="col">
+                        <h6 style="font-size: 12px; font-weight: 600;">HELP CENTER</h6>
+                        <p style="font-size: small; color: gray;">Customer care</p>
+                    </div>
+                </div>
+
+                <div class="row" style="display: flex; margin-top: 5px;">
+                    <div class="col">
+                        <img src="../static/images/return.png" alt="" style="width: 30px; height: 30px;">
+                    </div>
+                    <div class="col">
+                        <h6 style="font-size: 12px; font-weight: 600;">EASY RETURN</h6>
+                        <p style="font-size: small; color: gray;">Quick Refund</p>
+                    </div>
+                </div>
+
+                <div class="row" style="display: flex; margin-top: 5px;">
+                    <div class="col">
+                        <img src="../static/images/payment.png" alt="" style="width: 30px; height: 30px;">
+                    </div>
+                    <div class="col">
+                        <h6 style="font-size: 12px; font-weight: 600;">SELL ON AMAZON</h6>
+                        <p style="font-size: small; color: gray;">FBA Program</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 12px;">
+                <div class="col">
+                    <img src="../static/images/right2.gif" alt="" class="right2" style="width: 100%; border-radius: 10px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="container text-center">
+    <div class="row" style="margin: 8px;">
+        <div class="col" style="display: flex; background-color: white; border-radius: 10px; padding: 7px; margin: 5px;">
+            <img src="../static/images/techweek.png" alt="" style="width: 30px; height: 30px;">
+            <h6 style="margin: 4px">Tech Week</h6>
+        </div>
+        <div class="col" style="display: flex; background-color: white; border-radius: 10px; padding: 7px; margin: 5px;">
+            <img src="../static/images/FreeDelivery.png" alt="" style="width: 30px; height: 30px;">
+            <h6 style="margin: 4px">Free Delivery</h6>
+        </div>
+        <div class="col" style="display: flex; background-color: white; border-radius: 10px; padding: 7px; margin: 5px;">
+            <img src="../static/images/food.png" alt="" style="width: 30px; height: 30px;">
+            <h6 style="margin: 4px">Amazon Food</h6>
+        </div>
+        <div class="col" style="display: flex; background-color: white; border-radius: 10px; padding: 7px; margin: 5px;">
+            <img src="../static/images/airtime.png" alt="" style="width: 30px; height: 30px;">
+            <h6 style="margin: 4px">Airtime & Bills</h6>
+        </div>
+ 
+    </div>
+</div>
+
+
+<div class="container text-center">
+    <div class="row" style="margin: 8px; background-color: rgb(219, 218, 218);" id="column">
+
+        {% for item in items %}
+        <div class="col" style="background-color: white; margin: 10px; border-radius: 10px; padding: 10px;">
+        
+            <!-- Product Image -->
+            <img src="{{ item.product_picture }}" alt="{{ item.product_name }}" 
+                 style="height: 202px; width: 180px; border-radius: 10px;">
+
+            <!-- Product Name -->
+            <div class="row" style="margin-top: 5px;">
+                <h6 style="color: gray;">{{ item.product_name }}</h6>
+            </div>
+
+<!-- Product Price and Add to Cart / Wishlist Buttons -->
+<div class="row product-box" style="margin-top: 10px; position: relative;">
+    <div class="col">
+        <h5 style="font-weight: 600; font-family: 'Times New Roman', Times, serif;">
+            Rs. {{ item.current_price }}
+        </h5>
+        <strike><p style="color: gray;">Rs. {{ item.previous_price }}</p></strike>
+    </div>
+
+    <div class="col text-end">
+        <!-- Add to Cart Button (Smaller size) -->
+        <a href="/add-to-cart/{{ item.id }}" class="btn btn-success btn-sm custom-cart-btn">
+            <i class="fa fa-shopping-basket"></i> Add to Cart
+        </a>
+    </div>
+
+    <!-- Add to Wishlist Button (Heart Icon) placed at the bottom -->
+    <div class="wishlist-icon" style="position: absolute; bottom: 10px; right: 10px;">
+        <form method="POST" action="{{ url_for('auth.add_to_wishlist', item_id=item.id) }}" style="display: inline-block;">
+            <button type="submit" class="btn btn-outline-danger btn-sm custom-wishlist-btn">
+                <i class="fa fa-heart"></i> <!-- Heart icon -->
+            </button>
+        </form>
+    </div>
+</div>
+
+<style>
+/* Styling for the "Add to Cart" button */
+.custom-cart-btn {
+    font-size: 0.7rem;  /* Reduce font size */
+    padding: 6px 12px;  /* Reduce padding */
+    border-radius: 5px;  /* Slightly rounded corners */
+}
+
+/* Styling for the "Add to Wishlist" button */
+.custom-wishlist-btn {
+    font-size: 0.8rem;  /* Adjust font size */
+    padding: 5px 10px;  /* Reduce padding */
+    border-radius: 0;  /* Remove rounded corners */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Positioning for the Wishlist Icon */
+.product-box {
+    position: relative;
+    padding-bottom: 30px;  /* Space for the heart icon */
+}
+
+.custom-cart-btn:hover {
+    background-color: #28a745; /* Darken the cart button on hover */
+    color: white;
+}
+
+.custom-wishlist-btn:hover {
+    background-color: #dc3545; /* Darken the wishlist button on hover */
+    color: white;
+}
+</style>
+
+
+
+
+            <!-- Stock Information -->
+            <div class="row">
+                <p style="font-size: small; color: gray;">{{ item.in_stock }} Items Left</p>
+            </div>
+        </div>
+        {% endfor %}
+        
+    </div>
+</div>
+
+
+
+{% endblock %}

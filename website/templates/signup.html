@@ -1,0 +1,81 @@
+{% extends 'forms.html' %}
+
+{% block title %}Sign Up - Shopping Platform{% endblock %}
+
+{% block body %}
+<!-- Sign up section starts -->
+<section class="login-section">
+    <div class="form-header">
+        <h3>Create an account<br>to shop</h3>
+        <p><b>Join us by filling the form below</b></p>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST" class="login-form">
+        {{ form.hidden_tag() }}
+
+        <!-- Email Field -->
+        <div class="form-group">
+            <label class="form-label"><i class="bi bi-envelope me-2"></i>Email Address</label>
+            <div class="input-wrapper">
+                {{ form.email(class="form-control") }}
+                <div class="input-underline"></div>
+            </div>
+        </div>
+
+        <!-- Username Field -->
+        <div class="form-group">
+            <label class="form-label"><i class="bi bi-person me-2"></i>Username</label>
+            <div class="input-wrapper">
+                {{ form.username(class="form-control") }}
+                <div class="input-underline"></div>
+            </div>
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-group">
+            <label class="form-label"><i class="bi bi-lock me-2"></i>Password</label>
+            <div class="input-wrapper">
+                {{ form.password1(class="form-control") }}
+                <div class="input-underline"></div>
+            </div>
+        </div>
+
+        <!-- Confirm Password Field -->
+        <div class="form-group">
+            <label class="form-label"><i class="bi bi-lock-fill me-2"></i>Confirm Password</label>
+            <div class="input-wrapper">
+                {{ form.password2(class="form-control") }}
+                <div class="input-underline"></div>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-actions">
+            <button type="submit" class="btn btn-login">
+                <i class="bi bi-person-plus me-2"></i> Sign Up
+            </button>
+
+            <div class="divider">
+                <span>or</span>
+            </div>
+
+            <a href="{{ url_for('auth.login') }}" class="btn btn-signup">
+                <i class="bi bi-box-arrow-in-right me-2"></i>Already have an account? Log In
+            </a>
+        </div>
+    </form>
+</section>
+
+
+{% endblock %}

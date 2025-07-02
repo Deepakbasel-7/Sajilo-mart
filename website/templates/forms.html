@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+        <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"
+        integrity="sha512-dPXYcDub/aeb08c63jRq/k6GaKccl256JQy/AnOq7CAnEZ9FzSL9wSbcZkMp4R26vBsMLFYH4kQ67/bbV8XaCQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/e24507d923.js" crossorigin="anonymous"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <title>{% block title %}Sajilo Mart{% endblock %}</title>
+
+    <style>
+     
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+        }
+
+        /* Main Container */
+        .main-container {
+            flex: 1;
+            padding: 0 1rem;
+        }
+
+        /* Login Section */
+        .login-section {
+            max-width: 450px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+        }
+
+        /* Form Header */
+        .form-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-header p {
+            color: #0f1013;
+            font-size: 1rem;
+            margin: 0;
+            font-weight: 400;
+        }
+
+        /* Form Groups */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* Input Wrapper */
+        .input-wrapper {
+            position: relative;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 1rem;
+            background-color: #f9fafb;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-control:focus {
+            border-color: #3b82f6;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-control.is-valid {
+            border-color: #10b981;
+            background-color: #f0fdf4;
+        }
+
+        .form-control.is-invalid {
+            border-color: #ef4444;
+            background-color: #fef2f2;
+        }
+
+        /* Input Underline Animation */
+        .input-underline {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            transition: width 0.3s ease;
+        }
+
+        .input-wrapper.focused .input-underline {
+            width: 100%;
+        }
+
+        /* Password Toggle Button */
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #6b7280;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+            transition: color 0.2s ease;
+        }
+
+        .password-toggle:hover {
+            color: #3b82f6;
+        }
+
+        /* Forgot Password Link */
+        .forgot-password {
+            color: #3b82f6;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .forgot-password:hover {
+            color: #2563eb;
+            text-decoration: underline;
+        }
+
+        .text-end {
+            text-align: right;
+        }
+
+        /* Form Actions */
+        .form-actions {
+            margin-top: 2rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        /* Login Button */
+        .btn-login {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-login:hover {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-login:active {
+            transform: translateY(0);
+        }
+
+        .btn-login.loading {
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        .btn-login.loading::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Divider */
+        .divider {
+            text-align: center;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #e5e7eb;
+        }
+
+        .divider span {
+            background: white;
+            color: #6b7280;
+            padding: 0 1rem;
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        /* Signup Button */
+        .btn-signup {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            background: white;
+            color: #374151;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .btn-signup:hover {
+            border-color: #3b82f6;
+            color: #3b82f6;
+            background: #f8fafc;
+            text-decoration: none;
+        }
+
+        /* Icon margins */
+        .me-2 {
+            margin-right: 0.5rem;
+        }
+
+        .me-3 {
+            margin-right: 1rem;
+        }
+
+        .me-1 {
+            margin-right: 0.25rem;
+        }
+
+        /* Social Login */
+        .social-login {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .social-text {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .btn-social {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-google {
+            background: #ffffff;
+            color: #db4437;
+            border: 2px solid #e5e7eb;
+        }
+
+        .btn-google:hover {
+            background: #db4437;
+            color: white;
+            border-color: #db4437;
+        }
+
+        .btn-facebook {
+            background: #ffffff;
+            color: #4267b2;
+            border: 2px solid #e5e7eb;
+        }
+
+        .btn-facebook:hover {
+            background: #4267b2;
+            color: white;
+            border-color: #4267b2;
+        }
+
+        .btn-apple {
+            background: #ffffff;
+            color: #000000;
+            border: 2px solid #e5e7eb;
+        }
+
+        .btn-apple:hover {
+            background: #000000;
+            color: white;
+            border-color: #000000;
+        }
+
+        /* Ripple Effect */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .login-section {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+            
+            .social-buttons {
+                gap: 0.5rem;
+            }
+            
+            .btn-social {
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    
+</head>
+
+<body>
+    <!-- Bootstrap JS (for dismissible alerts to work) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Floating background shapes -->
+    <div class="floating-shapes">
+        <div class="shape shape-1">
+            <i class="fas fa-circle" style="font-size: 60px;"></i>
+        </div>
+        <div class="shape shape-2">
+            <i class="fas fa-square" style="font-size: 40px;"></i>
+        </div>
+        <div class="shape shape-3">
+            <i class="fas fa-triangle" style="font-size: 50px;"></i>
+        </div>
+    </div>
+
+    <!-- Flash messages -->
+    <div class="container-fluid">
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 1rem;">
+            <i class="bi bi-check-circle-fill me-2"></i>
+            <strong>{{ message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Main content -->
+    <div class="main-container">
+        <div class="glass-card">
+            <div class="form-header">
+                <h1>
+                    <i class="fab fa-apple me-2"></i>
+                   {% block page_heading %}Welcome{% endblock %}
+                </h1>
+                <p><b>Enter your details below to get started</b></p>
+            </div>
+
+            {% block body %}
+            <!-- Default form content - replace with your actual form -->
+            <form method="POST" id="mainForm">
+                <div class="form-group">
+                    <label for="email" class="form-label">
+                        <i class="bi bi-envelope me-2"></i>Email Address
+                    </label>
+                    <input type="email" class="form-control" id="email" name="email" 
+                           placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="name" class="form-label">
+                        <i class="bi bi-person me-2"></i>Full Name
+                    </label>
+                    <input type="text" class="form-control" id="name" name="name" 
+                           placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone" class="form-label">
+                        <i class="bi bi-telephone me-2"></i>Phone Number
+                    </label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="bi bi-telephone"></i>
+                        </span>
+                        <input type="tel" class="form-control" id="phone" name="phone" 
+                               placeholder="Your phone number">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="message" class="form-label">
+                        <i class="bi bi-chat-text me-2"></i>Message
+                    </label>
+                    <textarea class="form-control" id="message" name="message" rows="4" 
+                              placeholder="Tell us how we can help you..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="terms" name="terms" required>
+                        <label class="form-check-label" for="terms">
+                            I agree to the Terms of Service and Privacy Policy
+                        </label>
+                    </div>
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-send me-2"></i>
+                        Submit Form
+                    </button>
+                </div>
+            </form>
+            {% endblock %}
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZoCj8LwK4TPFE7KX"
+        crossorigin="anonymous"></script>
+
+    <script>
+        // Form loading state
+        document.getElementById('mainForm').addEventListener('submit', function(e) {
+            const submitBtn = this.querySelector('button[type="submit"]');
+            submitBtn.classList.add('btn-loading');
+            submitBtn.disabled = true;
+        });
+
+        // Enhanced form interactions
+        document.querySelectorAll('.form-control').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('focused');
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.classList.remove('focused');
+            });
+        });
+
+        // Auto-hide alerts after 5 seconds
+        document.querySelectorAll('.alert').forEach(alert => {
+            setTimeout(() => {
+                const bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+            }, 5000);
+        });
+    </script>
+</body>
+</html>

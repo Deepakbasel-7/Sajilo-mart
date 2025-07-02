@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %} Products in {{ category.name }} {% endblock %}
+
+{% block body %}
+<div class="container text-center">
+    <h2>Products in {{ category.name }}</h2>
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-4" style="margin-bottom: 20px;">
+            <!-- Product Card -->
+            <div class="card">
+                <img src="{{ url_for('admin.get_image', filename=product.product_picture|replace('media/', '')) }}" class="card-img-top" alt="{{ product.product_name }}" style="height: 200px; object-fit: cover;">
+
+
+
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.product_name }}</h5>
+                    <p class="card-text">Price: Rs. {{ product.current_price }}</p>
+                    <p class="card-text">
+                        <strike>Rs. {{ product.previous_price }}</strike>
+                    </p>
+                    <p class="card-text">{{ product.in_stock }} items left</p>
+                    <a href="/add-to-cart/{{ product.id }}" class="btn btn-success btn-sm">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

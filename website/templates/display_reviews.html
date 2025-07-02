@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+
+{% block title %}Customer Reviews{% endblock %}
+
+{% block body %}
+    <div class="reviews-container">
+        <h2 class="section-title">Customer Reviews</h2>
+        <div id="reviews-list">
+            {% for review in reviews %}
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="avatar">{{ review.name[0] }}</div>
+
+
+                        <div>
+                            <p class="reviewer-name">{{ review.name }}</p>
+                            <p class="reviewer-email">{{ review.email }}</p>
+                        </div>
+                    </div>
+                    <p class="review-message">{{ review.message }}</p>
+                    <p class="review-date">Submitted on: {{ review.date_submitted }}</p>
+                    <div class="review-footer">
+                        <button class="like-btn" onclick="likeReview()">👍 Like</button>
+                        <span class="like-count">0</span>
+                    </div>
+                </div>
+            {% else %}
+                <p class="no-reviews">No reviews available yet. Be the first to leave one!</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <style>
+        /* Basic container styling */
+        .reviews-container {
+            margin: 2rem auto;
+            max-width: 800px;
+            padding: 1.5rem;
+            background: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Review card styling */
+        .review-card {
+            background: #ffffff;
+            border-radius: 8px;
+            margin: 1rem 0;
+            padding: 1rem;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .review-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Header section */
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background: #007bff;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+        .reviewer-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .reviewer-email {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        /* Message styling */
+        .review-message {
+            font-size: 1rem;
+            margin: 0.5rem 0;
+            color: #333;
+        }
+        .review-date {
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        /* Footer section */
+        .review-footer {
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .like-btn {
+            background: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-right: 0.5rem;
+            transition: background-color 0.2s;
+        }
+        .like-btn:hover {
+            background: #0056b3;
+        }
+        .like-count {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        /* No reviews message */
+        .no-reviews {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #777;
+            margin: 1.5rem 0;
+        }
+    </style>
+
+    <script>
+        // Simple like functionality
+        function likeReview() {
+            const btn = event.target;
+            const countSpan = btn.nextElementSibling;
+            let count = parseInt(countSpan.textContent, 10);
+            count += 1;
+            countSpan.textContent = count;
+        }
+    </script>
+{% endblock %}
