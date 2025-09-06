@@ -1,7 +1,6 @@
 from . import db
 from flask_login import UserMixin
 from datetime import datetime
-from . import db
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
@@ -143,6 +142,17 @@ class Wishlist(db.Model):
 
     def __repr__(self):
         return f'<Wishlist {self.id} - Product {self.product_id}>'
+    
+
+
+
+class Review(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_name = db.Column(db.String(100), nullable=False)
+    user_type = db.Column(db.String(100), default="Customer")
+    rating = db.Column(db.Integer, nullable=False)
+    review_text = db.Column(db.Text, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
 
 

@@ -280,6 +280,194 @@
             padding: 20px 0;
         }
 
+        /* Testimonials Section */
+        .testimonials-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 80px 0;
+            margin: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+        }
+
+        .testimonials-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .testimonials-title h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .testimonials-title p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            font-weight: 500;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 40px;
+            margin: 20px 0;
+            box-shadow: var(--shadow-medium);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary-gradient);
+            transform: scaleX(0);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .testimonial-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            margin-right: 20px;
+            box-shadow: var(--shadow-light);
+            animation: rotate360 10s linear infinite;
+        }
+
+        @keyframes rotate360 {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .testimonial-info h4 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        .testimonial-info p {
+            color: var(--text-light);
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .testimonial-stars {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+
+        .star {
+            color: #ffd700;
+            font-size: 20px;
+            animation: twinkle 2s ease-in-out infinite;
+        }
+
+        .star:nth-child(2) { animation-delay: 0.2s; }
+        .star:nth-child(3) { animation-delay: 0.4s; }
+        .star:nth-child(4) { animation-delay: 0.6s; }
+        .star:nth-child(5) { animation-delay: 0.8s; }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+            font-style: italic;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .testimonial-text::before {
+            content: '"';
+            position: absolute;
+            left: -10px;
+            top: -10px;
+            font-size: 4rem;
+            color: var(--primary-gradient);
+            font-family: Georgia, serif;
+            opacity: 0.3;
+        }
+
+        .testimonial-text::after {
+            content: '"';
+            position: absolute;
+            right: -10px;
+            bottom: -30px;
+            font-size: 4rem;
+            color: var(--primary-gradient);
+            font-family: Georgia, serif;
+            opacity: 0.3;
+        }
+
+        /* Animation classes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
         /* Footer */
         footer {
             background: var(--dark-gradient) !important;
@@ -343,6 +531,21 @@
                 margin: 5px 0;
                 text-align: center;
             }
+
+            .testimonials-title h2 {
+                font-size: 2.5rem;
+            }
+
+            .testimonial-card {
+                padding: 25px;
+                margin: 15px 0;
+            }
+
+            .testimonial-avatar {
+                width: 50px;
+                height: 50px;
+                font-size: 18px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -353,6 +556,20 @@
             .cart-wishlist {
                 justify-content: center;
                 margin-top: 10px;
+            }
+
+            .testimonials-title h2 {
+                font-size: 2rem;
+            }
+
+            .testimonial-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .testimonial-avatar {
+                margin-right: 0;
+                margin-bottom: 15px;
             }
         }
 
@@ -384,6 +601,19 @@
 </head>
 
 <body>
+    <a href="{{ url_for('auth.submit_review') }}" class="nav-link">Write a Review</a>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="container mt-3">
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+
     <!-- navbar section -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container-fluid">
@@ -404,9 +634,6 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/contact">Contact Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/display-reviews">Customer Reviews</a>
                     </li>
                 </ul>
 
@@ -480,6 +707,162 @@
     <div class="content-wrapper" style="margin-top: 80px;">
         {% block body %}
         {% endblock %}
+
+        <!-- Testimonials Section -->
+        <section class="testimonials-section">
+            <div class="container">
+                <div class="testimonials-title">
+                    <h2>What Our Customers Say</h2>
+                    <p>Real experiences from our valued customers</p>
+                </div>
+                
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="testimonial-card fade-in-up">
+                            <div class="testimonial-header">
+                                <div class="testimonial-avatar">
+                                    R
+                                </div>
+                                <div class="testimonial-info">
+                                    <h4>Rajesh Kumar</h4>
+                                    <p>Verified Customer</p>
+                                </div>
+                            </div>
+                            <div class="testimonial-stars">
+                                <i class="bi bi-star-fill star"></i>
+                                <i class="bi bi-star-fill star"></i>
+                                <i class="bi bi-star-fill star"></i>
+                                <i class="bi bi-star-fill star"></i>
+                                <i class="bi bi-star-fill star"></i>
+                            </div>
+                            <div class="testimonial-text">
+                                Amazing service! The products arrived on time and the quality exceeded my expectations. Sajilo Mart has become my go-to shopping destination.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="testimonial-card fade-in-up">
+                            <div class="testimonial-header">
+                                <div class="testimonial-avatar">
+                                    P
+                                </div>
+                                <div class="testimonial-info">
+                                    <h4>Priya Sharma</h4>
+                                    <p>Regular Customer</p>
+                                </div>
+                            </div>
+                            <div class="testimonial-stars">
+                                <i class="bi bi-star-fill star"></i>
+                                <i class="bi bi-star-fill star"></i>
+                                <i class="bi bi-star-fill star"></i>
+                                <i class="bi bi-star-fill star"></i>
+                                <i class="bi bi-star-fill star"></i>
+                            </div>
+                            <div class="testimonial-text">
+                                Love the user-friendly interface and the wide variety of products. The customer support team is incredibly helpful and responsive!
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="testimonial-card fade-in-up">
+                            <div class="testimonial-header">
+                                <div class="testimonial-avatar">
+                                    A
+                                </div>
+                                <div class="testimonial-info">
+                                    <h4>Anil Thapa</h4>
+                                    <p>Happy Customer</p>
+                                </div>
+                            </div>
+                            <div class="testimonial-stars">
+                                <i class="bi bi-star-fill star"></i>
+                                <i class="bi bi-star-fill star"></i>
+                                <i class="bi bi-star-fill star"></i>
+                                <i class="bi bi-star-fill star"></i>
+                                <i class="bi bi-star star"></i>
+                            </div>
+                            <div class="testimonial-text">
+                                Fast delivery and excellent packaging. The prices are very competitive and the quality is top-notch. Highly recommended!
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="testimonial-card fade-in-up">
+                            <div class="testimonial-header">
+                                <div class="testimonial-avatar">
+                                    S
+                                </div>
+                                <div class="testimonial-info">
+                                    <h4>Sunita Rai</h4>
+                                    <p>Loyal Customer</p>
+                                </div>
+                            </div>
+                            <div class="testimonial-stars">
+                                <i class="bi bi-star-fill star"></i>
+                                <i class="bi bi-star-fill star"></i>
+                                <i class="bi bi-star-fill star"></i>
+                                <i class="bi bi-star-fill star"></i>
+                                <i class="bi bi-star-fill star"></i>
+                            </div>
+                            <div class="testimonial-text">
+                                Shopping has never been easier! The search functionality is excellent and I always find what I'm looking for. Great job!
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="testimonial-card fade-in-up">
+                            <div class="testimonial-header">
+                                <div class="testimonial-avatar">
+                                    M
+                                </div>
+                                <div class="testimonial-info">
+                                    <h4>Manoj Bhandari</h4>
+                                    <p>Satisfied Customer</p>
+                                </div>
+                            </div>
+                            <div class="testimonial-stars">
+                                <i class="bi bi-star-fill star"></i>
+                                <i class="bi bi-star-fill star"></i>
+                                <i class="bi bi-star-fill star"></i>
+                                <i class="bi bi-star-fill star"></i>
+                                <i class="bi bi-star star"></i>
+                            </div>
+                            <div class="testimonial-text">
+                                The return policy is very customer-friendly and the team handles exchanges smoothly. Trust and transparency at its best!
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="testimonial-card fade-in-up">
+                            <div class="testimonial-header">
+                                <div class="testimonial-avatar">
+                                    K
+                                </div>
+                                <div class="testimonial-info">
+                                    <h4>Kamala Devi</h4>
+                                    <p>Premium Customer</p>
+                                </div>
+                            </div>
+                            <div class="testimonial-stars">
+                                <i class="bi bi-star-fill star"></i>
+                                <i class="bi bi-star-fill star"></i>
+                                <i class="bi bi-star-fill star"></i>
+                                <i class="bi bi-star-fill star"></i>
+                                <i class="bi bi-star-fill star"></i>
+                            </div>
+                            <div class="testimonial-text">
+                                Outstanding service quality! From browsing to checkout, everything is seamless. Sajilo Mart truly lives up to its name!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
     <footer class="container-fluid text-center">
@@ -520,6 +903,29 @@
                 }
             });
 
+            // Intersection Observer for testimonial animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all testimonial cards
+            document.querySelectorAll('.testimonial-card').forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(50px)';
+                card.style.transition = `all 0.6s ease ${index * 0.1}s`;
+                observer.observe(card);
+            });
+
             // Add ripple effect to buttons
             document.querySelectorAll('.btn, .nav-link').forEach(button => {
                 button.addEventListener('click', function(e) {
@@ -557,6 +963,31 @@
                     setTimeout(() => alert.remove(), 300);
                 });
             }, 5000);
+
+            // Testimonial card hover effects
+            document.querySelectorAll('.testimonial-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-15px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Smooth scrolling for internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
         });
 
         // Add ripple animation CSS

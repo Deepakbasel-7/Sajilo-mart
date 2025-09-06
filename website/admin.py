@@ -260,12 +260,12 @@ def admin_page():
 
 
 
-@admin.route('/display-reviews', methods=['GET'])
-def display_reviews():
-    # Fetch the most recent 5 contact messages
-    reviews = ContactMessage.query.order_by(ContactMessage.date_submitted.desc()).limit(5).all()
+# @admin.route('/display-messages', methods=['GET'])
+# def display_reviews():
+#     # Fetch the most recent 5 contact messages
+#     reviews = ContactMessage.query.order_by(ContactMessage.date_submitted.desc()).limit(5).all()
     
-    return render_template('display_reviews.html', reviews=reviews)
+#     return render_template('display_messages.html', reviews=reviews)
 
 
 

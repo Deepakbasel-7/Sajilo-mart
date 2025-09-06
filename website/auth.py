@@ -1,8 +1,9 @@
 from flask import Blueprint, render_template, flash, redirect, request, url_for, abort
-from .forms import LoginForm, SignUpForm, PasswordChangeForm
-from .models import Customer, ContactMessage, Order, Wishlist, Product, Category
+from .forms import LoginForm, SignUpForm, PasswordChangeForm, ReviewForm
+from .models import Customer, ContactMessage, Order, Wishlist, Product, Category, Review
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
+from sqlalchemy.exc import SQLAlchemyError
 
 
 auth = Blueprint('auth', __name__)
@@ -145,14 +146,6 @@ def products():
 def about_us():
     return render_template('about_us.html')
 
-
-
-
-
-
-
-
-
 @auth.route('/wishlist')
 @login_required
 def wishlist():
@@ -188,9 +181,6 @@ def add_to_wishlist(item_id):
 
 
 
-
-
-from sqlalchemy.exc import SQLAlchemyError
 
 @auth.route('/remove-from-wishlist/<int:item_id>', methods=['POST'])
 @login_required
@@ -257,6 +247,26 @@ def delete_customer(customer_id):
     db.session.commit()
     flash("Customer deleted successfully!", "success")
     return redirect(url_for('admin.display_customers'))  
+
+
+
+
+
+@auth.route("/submit-review", methods=["GET", "POST"])
+def submit_review():
+    form = ReviewForm()
+    if form.validate_on_submit():
+        review = Review(
+            user_name=form.user_name.data,
+            user_type=form.user_type.data,
+            rating=form.rating.data,
+            review_text=form.review_text.data
+        )
+        db.session.add(review)
+        db.session.commit()
+        flash("Thank you for your feedback!", "success")
+        return redirect(url_for("home"))  # or wherever you want to redirect
+    return render_template("submit_review.html", form=form)
 
 
 

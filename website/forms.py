@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, FloatField, PasswordField, EmailField, BooleanField, SubmitField, SelectField
+from wtforms import StringField, IntegerField, FloatField, PasswordField, EmailField, BooleanField, SubmitField, SelectField, TextAreaField
+from wtforms.validators import DataRequired, Email, Length
 from wtforms.validators import DataRequired, length, NumberRange
 from flask_wtf.file import FileField, FileRequired
 from .models import Category
@@ -55,6 +56,15 @@ class OrderForm(FlaskForm):
                                                        ('Canceled','Canceled')])
     
     update= SubmitField('Update Status')
+
+
+
+class ReviewForm(FlaskForm):
+    user_name = StringField("Name", validators=[DataRequired()])
+    user_type = SelectField("You are a", choices=[("Customer", "Customer"), ("Vendor", "Vendor")])
+    rating = IntegerField("Rating (1-5)", validators=[DataRequired(), NumberRange(min=1, max=5)])
+    review_text = TextAreaField("Your Review", validators=[DataRequired()])
+    submit = SubmitField("Submit Review")
 
 
 
