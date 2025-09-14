@@ -17,6 +17,19 @@ def home():
                            cart=Cart.query.filter_by(customer_link=current_user.id).all()
                            if current_user.is_authenticated else [])
 
+@views.route('/product')
+def product():
+    items = Product.query.filter_by()
+    category = Category.query.all()
+    return render_template('product.html', items=items, categories=category,
+                           cart=Cart.query.filter_by(customer_link=current_user.id).all()
+                           if current_user.is_authenticated else [])
+
+@views.route('/product/<int:item_id>')
+def product_detail(item_id):
+    product = Product.query.filter_by(id=item_id).first_or_404()
+    return render_template('product_detail.html', product=product)
+
 @views.route('/add-to-cart/<int:item_id>')
 @login_required
 def add_to_cart(item_id):
@@ -138,7 +151,7 @@ def wishlist():
     wishlist_items = Wishlist.query.filter_by(customer_id=current_user.id).all()
     wishlist_count = len(wishlist_items)
     return render_template('wishlist.html', wishlist_items=wishlist_items, wishlist_count=wishlist_count)
-
+    
 
 @views.route('/orders')
 @login_required
@@ -155,3 +168,9 @@ def search():
                                cart=Cart.query.filter_by(customer_link=current_user.id).all()
                                if current_user.is_authenticated else [])
     return render_template('search.html')
+
+
+@views.route('/contact', methods=['GET'])
+def contact():
+    print("contact")
+    return render_template('contact.html')

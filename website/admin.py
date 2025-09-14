@@ -8,9 +8,6 @@ from datetime import datetime
 import os
 
 
-
-
-
 admin= Blueprint('admin', __name__)
 @admin.route('/media/<path:filename>')
 def get_image(filename):
@@ -162,12 +159,6 @@ def delete_item(item_id):
     else:
         print(f"Unauthorized access by user ID: {current_user.id}")  # Debugging
         return render_template('404.html')
-
-
-
-
-
-
 
 
 @admin.route('/view-orders')

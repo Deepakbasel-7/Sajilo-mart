@@ -1,0 +1,477 @@
+{% extends 'base.html' %}
+
+{% block title %} Product Detail {% endblock %}
+
+{% block content %}
+
+<!--============================
+        PRODUCT DETAILS START
+    ==============================-->
+<section id="wsus__product_details">
+    <div class="container">
+        <div class="wsus__details_bg">
+            <div class="row">
+                <div class="col-xl-4 col-md-5 col-lg-5">
+                    <div id="sticky_pro_zoom">
+                        <div class="exzoom hidden" id="exzoom">
+                            <div class="exzoom_img_box">
+                                <a class="venobox wsus__pro_det_video" data-autoplay="true" data-vbtype="video"
+                                    href="https://youtu.be/7m16dFI1AF8">
+                                    <i class="fas fa-play"></i>
+                                </a>
+                                <ul class='exzoom_img_ul'>
+                                    <li> <img class="zoom img-fluid w-100" src="/{{ product.product_picture }}"
+                                            alt="{{ product.name }}"></li>
+                                    <li><img class="zoom ing-fluid w-100" src="images/zoom3.jpg" alt="product"></li>
+                                    <li><img class="zoom ing-fluid w-100" src="images/zoom4.jpg" alt="product"></li>
+                                    <li><img class="zoom ing-fluid w-100" src="images/zoom1.jpg" alt="product"></li>
+                                    <li><img class="zoom ing-fluid w-100" src="images/zoom2.jpg" alt="product"></li>
+                                    <li><img class="zoom ing-fluid w-100" src="images/zoom1.jpg" alt="product"></li>
+                                    <li><img class="zoom ing-fluid w-100" src="images/zoom2.jpg" alt="product"></li>
+                                </ul>
+                            </div>
+                            <div class="exzoom_nav"></div>
+                            <p class="exzoom_btn">
+                                <a href="javascript:void(0);" class="exzoom_prev_btn"> <i
+                                        class="far fa-chevron-left"></i> </a>
+                                <a href="javascript:void(0);" class="exzoom_next_btn"> <i
+                                        class="far fa-chevron-right"></i> </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-5 col-md-7 col-lg-7">
+                    <div class="wsus__pro_details_text">
+                        <a class="title" href="#">{{ product.product_name }}</a>
+                        <p class="wsus__stock_area"><span class="in_stock">in stock</span> (167 item)</p>
+                        <h4>Rs.{{ product.current_price }} <del>Rs.{{ product.previous_price }}</del></h4>
+                        <p class="review">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>20 review</span>
+                        </p>
+
+                        <div class="wsus_pro_hot_deals">
+                            <h5>offer ending time : </h5>
+                            <div class="simply-countdown simply-countdown-one"></div>
+                        </div>
+                        <div class="wsus_pro_det_color">
+                            <h5>color :</h5>
+                            <ul>
+                                <li><a class="blue" href="#"><i class="far fa-check"></i></a></li>
+                                <li><a class="orange" href="#"><i class="far fa-check"></i></a></li>
+                                <li><a class="yellow" href="#"><i class="far fa-check"></i></a></li>
+                                <li><a class="black" href="#"><i class="far fa-check"></i></a></li>
+                                <li><a class="red" href="#"><i class="far fa-check"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="wsus_pro__det_size">
+                            <h5>size :</h5>
+                            <ul>
+                                <li><a href="#">S</a></li>
+                                <li><a href="#">M</a></li>
+                                <li><a href="#">L</a></li>
+                                <li><a href="#">XL</a></li>
+                            </ul>
+                        </div>
+                        <div class="wsus__quentity">
+                            <h5>quentity :</h5>
+                            <form class="select_number">
+                                <input class="number_area" type="text" min="1" max="100" value="1" />
+                            </form>
+                            <h3>$50.00</h3>
+                        </div>
+                        <div class="wsus__selectbox">
+                            <div class="row">
+                                <div class="col-xl-6 col-sm-6">
+                                    <h5 class="mb-2">select:</h5>
+                                    <select class="select_2" name="state">
+                                        <option>default select</option>
+                                        <option>select 1</option>
+                                        <option>select 2</option>
+                                        <option>select 3</option>
+                                        <option>select 4</option>
+                                    </select>
+                                </div>
+                                <div class="col-xl-6 col-sm-6">
+                                    <h5 class="mb-2">select:</h5>
+                                    <select class="select_2" name="state">
+                                        <option>default select</option>
+                                        <option>select 1</option>
+                                        <option>select 2</option>
+                                        <option>select 3</option>
+                                        <option>select 4</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="wsus__button_area">
+                            <li><a class="add_cart" href="#">add to cart</a></li>
+                            <li><a class="buy_now" href="#">buy now</a></li>
+                            <li><a href="#"><i class="fal fa-heart"></i></a></li>
+                            <li><a href="#"><i class="far fa-random"></i></a></li>
+                        </ul>
+                        <p class="brand_model"><span>model :</span> 12345670</p>
+                        <p class="brand_model"><span>brand :</span> The Northland</p>
+                        <div class="wsus__pro_det_share">
+                            <h5>share :</h5>
+                            <ul class="d-flex">
+                                <li><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a class="whatsapp" href="#"><i class="fab fa-whatsapp"></i></a></li>
+                                <li><a class="instagram" href="#"><i class="fab fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                        <a class="wsus__pro_report" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                                class="fal fa-comment-alt-smile"></i> Report incorrect
+                            product information.</a>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-12 mt-md-5 mt-lg-0">
+                    <div class="wsus_pro_det_sidebar" id="sticky_sidebar">
+                        <ul>
+                            <li>
+                                <span><i class="fal fa-truck"></i></span>
+                                <div class="text">
+                                    <h4>Return Available</h4>
+                                    <!-- <p>Lorem Ipsum is simply dummy text of the printing</p> -->
+                                </div>
+                            </li>
+                            <li>
+                                <span><i class="far fa-shield-check"></i></span>
+                                <div class="text">
+                                    <h4>Secure Payment</h4>
+                                    <!-- <p>Lorem Ipsum is simply dummy text of the printing</p> -->
+                                </div>
+                            </li>
+                            <li>
+                                <span><i class="fal fa-envelope-open-dollar"></i></span>
+                                <div class="text">
+                                    <h4>Warranty Available</h4>
+                                    <!-- <p>Lorem Ipsum is simply dummy text of the printing</p> -->
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="wsus__det_sidebar_banner">
+                            <img src="images/blog_1.jpg" alt="banner" class="img-fluid w-100">
+                            <div class="wsus__det_sidebar_banner_text_overlay">
+                                <div class="wsus__det_sidebar_banner_text">
+                                    <p>Black Friday Sale</p>
+                                    <h4>Up To 70% Off</h4>
+                                    <a href="#" class="common_btn">shope now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="wsus__pro_det_description">
+                    <div class="wsus__details_bg">
+                        <ul class="nav nav-pills mb-3" id="pills-tab3" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                 <button class="nav-link" id="pills-contact-tab2" data-bs-toggle="pill"
+                                    data-bs-target="#pills-contact2" type="button" role="tab"
+                                    aria-controls="pills-contact2" aria-selected="false">Reviews</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-profile-tab7" data-bs-toggle="pill"
+                                    data-bs-target="#pills-profile22" type="button" role="tab"
+                                    aria-controls="pills-profile" aria-selected="false">Information</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-contact" type="button" role="tab"
+                                    aria-controls="pills-contact" aria-selected="false">Vendor Info</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-contact-tab2" data-bs-toggle="pill"
+                                    data-bs-target="#pills-contact2" type="button" role="tab"
+                                    aria-controls="pills-contact2" aria-selected="false">Reviews</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-contact-tab23" data-bs-toggle="pill"
+                                    data-bs-target="#pills-contact23" type="button" role="tab"
+                                    aria-controls="pills-contact23" aria-selected="false">comment</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-contact-tab239" data-bs-toggle="pill"
+                                    data-bs-target="#pills-contact239" type="button" role="tab"
+                                    aria-controls="pills-contact239" aria-selected="false">faqs</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent4">
+                            <div class="tab-pane fade  show active " id="pills-home22" role="tabpanel"
+                                aria-labelledby="pills-home-tab7">
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="wsus__description_area">
+                                            <h1>Heading</h1>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum
+                                                sapiente aliquam ut neque voluptatibus inventore odit nesciunt.
+                                                Nobis quas saepe repellat repudiandae qui sint? Delectus dignissimos
+                                                maiores fuga doloremque magni, ratione provident exercitationem
+                                                aliquam tempore velit facere autem magnam, architecto inventore
+                                                recusandae dolorum, illo sequi officiis dolore! Unde enim,
+                                                exercitationem. Lorem ipsum</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum
+                                                sapiente aliquam ut neque voluptatibus inventore odit nesciunt.
+                                                Nobis quas saepe repellat repudiandae qui sint? Delectus dignissimos
+                                                maiores fuga doloremque magni, ratione provident exercitationem
+                                                aliquam tempore velit facere autem magnam, architecto inventore
+                                                recusandae dolorum, illo sequi officiis dolore! Unde enim,
+                                                exercitationem. Lorem ipsum</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum
+                                                sapiente aliquam ut neque voluptatibus inventore odit nesciunt.
+                                                Nobis quas saepe repellat repudiandae qui sint? Delectus dignissimos
+                                                maiores fuga doloremque magni, ratione provident exercitationem
+                                                aliquam tempore velit facere autem magnam, architecto inventore
+                                                recusandae dolorum, illo sequi officiis dolore! Unde enim,
+                                                exercitationem. Lorem ipsum</p>
+                                            <ul>
+                                                <li>Consectetur adipisicing elit. Voluptatum sapiente aliquam ut
+                                                    neque voluptatibus inventore odit nesciunt. Nobis quas saepe
+                                                    repellat</li>
+                                                <li>Delectus dignissimos maiores fuga doloremque magni, ratione
+                                                    provident exercitationem aliquam tempore velit facere autem
+                                                    magnam</li>
+                                                <li>velit facere autem magnam, architecto inventore recusandae
+                                                    dolorum, illo sequi officiis dolore! Unde enim</li>
+                                                <li>Repudiandae qui sint? Delectus dignissimos maiores fuga
+                                                    doloremque magni, ratione provident exercitationem aliquam
+                                                    tempore velit facere autem</li>
+                                                <li>Ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum
+                                                    sapiente aliquam ut neque voluptatibus inventore odit nesciunt.
+                                                    Nobis quas saepe repella</li>
+                                            </ul>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum
+                                                sapiente aliquam ut neque voluptatibus inventore odit nesciunt.
+                                                Nobis quas saepe repellat repudiandae qui sint? Delectus dignissimos
+                                                maiores fuga doloremque magni, ratione provident exercitationem
+                                                aliquam tempore velit facere autem magnam, architecto inventore
+                                                recusandae dolorum, illo sequi officiis dolore! Unde enim,
+                                                exercitationem. Lorem ipsum</p>
+                                            <h4>Heading 5</h4>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum
+                                                sapiente aliquam ut neque voluptatibus inventore odit nesciunt.
+                                                Nobis quas saepe repellat repudiandae qui sint? Delectus dignissimos
+                                                maiores fuga doloremque magni, ratione provident exercitationem
+                                                aliquam tempore velit facere autem magnam, architecto inventore
+                                                recusandae dolorum, illo sequi officiis dolore! Unde enim,
+                                                exercitationem. Lorem ipsum</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xl-4 col-md-4">
+                                            <div class="description_single">
+                                                <h6><span>1</span> Free Shipping & Return</h6>
+                                                <p>We offer free shipping for products on orders above 50$ and
+                                                    offer
+                                                    free delivery for all orders in US.</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-4">
+                                            <div class="description_single">
+                                                <h6><span>2</span> Free and Easy Returns</h6>
+                                                <p>We guarantee our products and you could get back all of your
+                                                    money anytime you want in 30 days.</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-4">
+                                            <div class="description_single">
+                                                <h6><span>3</span> Special Financing </h6>
+                                                <p>Get 20%-50% off items over 50$ for a month or over 250$ for a
+                                                    year with our special credit card.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="pills-contact2" role="tabpanel"
+                                aria-labelledby="pills-contact-tab2">
+                                <div class="wsus__pro_det_review">
+                                    <div class="wsus__pro_det_review_single">
+                                        <div class="row">
+                                            <div class="col-xl-8 col-lg-7">
+                                                <div class="wsus__comment_area">
+                                                    <h4>Reviews <span>02</span></h4>
+                                                    <div class="wsus__main_comment">
+                                                        <div class="wsus__comment_img">
+                                                            <img src="images/client_img_3.jpg" alt="user"
+                                                                class="img-fluid w-100">
+                                                        </div>
+                                                        <div class="wsus__comment_text reply">
+                                                            <h6>Shopnil mahadi <span>4 <i
+                                                                        class="fas fa-star"></i></span></h6>
+                                                            <span>09 Jul 2021</span>
+                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing
+                                                                elit.
+                                                                Cupiditate sint molestiae eos? Officia, fuga eaque.
+                                                            </p>
+                                                            <ul class="">
+                                                                <li><img src="images/headphone_1.jpg" alt="product"
+                                                                        class="img-fluid w-100"></li>
+                                                                <li><img src="images/headphone_2.jpg" alt="product"
+                                                                        class="img-fluid w-100"></li>
+                                                                <li><img src="images/kids_1.jpg" alt="product"
+                                                                        class="img-fluid w-100"></li>
+                                                            </ul>
+                                                            <a href="#" data-bs-toggle="collapse"
+                                                                data-bs-target="#flush-collapsetwo">reply</a>
+                                                            <div class="accordion accordion-flush"
+                                                                id="accordionFlushExample2">
+                                                                <div class="accordion-item">
+                                                                    <div id="flush-collapsetwo"
+                                                                        class="accordion-collapse collapse"
+                                                                        aria-labelledby="flush-collapsetwo"
+                                                                        data-bs-parent="#accordionFlushExample">
+                                                                        <div class="accordion-body">
+                                                                            <form>
+                                                                                <div
+                                                                                    class="wsus__riv_edit_single text_area">
+                                                                                    <i class="far fa-edit"></i>
+                                                                                    <textarea cols="3" rows="1"
+                                                                                        placeholder="Your Text"></textarea>
+                                                                                </div>
+                                                                                <button type="submit"
+                                                                                    class="common_btn">submit</button>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="wsus__main_comment">
+                                                        <div class="wsus__comment_img">
+                                                            <img src="images/client_img_1.jpg" alt="user"
+                                                                class="img-fluid w-100">
+                                                        </div>
+                                                        <div class="wsus__comment_text reply">
+                                                            <h6>Smith jhon <span>5 <i class="fas fa-star"></i></span>
+                                                            </h6>
+                                                            <span>09 Jul 2021</span>
+                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing
+                                                                elit.
+                                                                Cupiditate sint molestiae eos? Officia, fuga eaque.
+                                                            </p>
+                                                            <a href="#" data-bs-toggle="collapse"
+                                                                data-bs-target="#flush-collapsetwo2">reply</a>
+                                                            <div class="accordion accordion-flush"
+                                                                id="accordionFlushExample2">
+                                                                <div class="accordion-item">
+                                                                    <div id="flush-collapsetwo2"
+                                                                        class="accordion-collapse collapse"
+                                                                        aria-labelledby="flush-collapsetwo"
+                                                                        data-bs-parent="#accordionFlushExample">
+                                                                        <div class="accordion-body">
+                                                                            <form>
+                                                                                <div
+                                                                                    class="wsus__riv_edit_single text_area">
+                                                                                    <i class="far fa-edit"></i>
+                                                                                    <textarea cols="3" rows="1"
+                                                                                        placeholder="Your Text"></textarea>
+                                                                                </div>
+                                                                                <button type="submit"
+                                                                                    class="common_btn">submit</button>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="pagination">
+                                                        <nav aria-label="Page navigation example">
+                                                            <ul class="pagination">
+                                                                <li class="page-item">
+                                                                    <a class="page-link" href="#" aria-label="Previous">
+                                                                        <i class="fas fa-chevron-left"></i>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="page-item"><a class="page-link page_active"
+                                                                        href="#">1</a>
+                                                                </li>
+                                                                <li class="page-item"><a class="page-link"
+                                                                        href="#">2</a></li>
+                                                                <li class="page-item"><a class="page-link"
+                                                                        href="#">3</a></li>
+                                                                <li class="page-item"><a class="page-link"
+                                                                        href="#">4</a></li>
+                                                                <li class="page-item">
+                                                                    <a class="page-link" href="#" aria-label="Next">
+                                                                        <i class="fas fa-chevron-right"></i>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </nav>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-5 mt-4 mt-lg-0">
+                                                <div class="wsus__post_comment rev_mar" id="sticky_sidebar3">
+                                                    <h4>write a Review</h4>
+                                                    <form action="#">
+                                                        <p class="rating">
+                                                            <span>select your rating : </span>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                        </p>
+                                                        <div class="row">
+                                                            <div class="col-xl-12">
+                                                                <div class="wsus__single_com">
+                                                                    <input type="text" placeholder="Name">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-12">
+                                                                <div class="wsus__single_com">
+                                                                    <input type="email" placeholder="Email">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xl-12">
+                                                                <div class="col-xl-12">
+                                                                    <div class="wsus__single_com">
+                                                                        <textarea cols="3" rows="3"
+                                                                            placeholder="Write your review"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="img_upload">
+                                                            <div class="gallery">
+                                                                <a class="cam" href="javascript:void(0)"><span><i
+                                                                            class="fas fa-image"></i></span>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <button class="common_btn" type="submit">submit
+                                                            review</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!--============================
+        PRODUCT DETAILS END
+    ==============================-->
+
+{% endblock %}

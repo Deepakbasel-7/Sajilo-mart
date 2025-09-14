@@ -23,8 +23,6 @@ class Customer(db.Model, UserMixin):
     #     )
 
     
-    
-    
     # Using property decorator for password
     @property
     def password(self):
@@ -83,10 +81,6 @@ class Cart(db.Model):
     
     def __str__(self):
         return '<Cart %r>' %self.id
-    
-    
-    
-
     
     
 class Order(db.Model):

@@ -45,7 +45,7 @@ def login():
     if form.validate_on_submit():
         email = form.email.data
         password = form.password.data
-
+        print(email)
         customer = Customer.query.filter_by(email=email).first()
 
         if not customer:
@@ -126,14 +126,7 @@ def contact():
     return render_template('contact.html')
 
 
-
-
-
-from sqlalchemy.orm import joinedload
-
-
 @auth.route('/products')
-@login_required
 def products():
     # This example assumes you have a Product model and template.
     products = Product.query.all()
@@ -144,13 +137,6 @@ def products():
 @auth.route('/about')
 def about_us():
     return render_template('about_us.html')
-
-
-
-
-
-
-
 
 
 @auth.route('/wishlist')
@@ -182,11 +168,6 @@ def add_to_wishlist(item_id):
         flash(f"'{item.product_name}' added to your wishlist!", "success")
     
     return redirect(url_for('auth.wishlist'))  # Change 'auth.view_wishlist' to your wishlist view function name
-
-
-
-
-
 
 
 

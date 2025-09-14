@@ -3,27 +3,29 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="format-detection" content="telephone=no">
-    <title>Sajilo Mart</title>
-
-    <link
-        href="https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700,700ii%7CRoboto:300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic"
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
+    <title>Sajilo Mart</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/slick.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.nice-number.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.calendar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/add_row_custon.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mobile_menu.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.exzoom.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/multiple-image-video.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ranger_style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.classycountdown.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/venobox.min.css') }}">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css' ) }}">
-
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css' ) }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css' ) }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/ion.rangeSlider.skinFlat.css' ) }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.bxslider.css' ) }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.fancybox.css' ) }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/flexslider.css' ) }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/swiper.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/swiper.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/media.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+    <!-- <link rel="stylesheet" href="css/rtl.css"> -->
 </head>
 
 <body>
@@ -39,24 +41,55 @@
     {% include 'footer.html' %}
 
 
-    <!-- jQuery plugins/scripts - start -->
-    <script src="{{ url_for('static', filename='js/jquery-1.11.2.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/jquery.bxslider.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/fancybox/fancybox.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/fancybox/helpers/jquery.fancybox-thumbs.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/jquery.flexslider-min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/swiper.jquery.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/jquery.waypoints.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/progressbar.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/ion.rangeSlider.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/chosen.jquery.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/jQuery.Brazzers-Carousel.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/plugins.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}"></script>
-    <script src="{{ url_for('static', filename='js/gmap.js') }}"></script>
-    <!-- jQuery plugins/scripts - end -->
+   
+    <!--============================
+        SCROLL BUTTON START
+    ==============================-->
+    <div class="wsus__scroll_btn">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+    <!--============================
+        SCROLL BUTTON  END
+    ==============================-->
 
+
+    <!--jquery library js-->
+    <script src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}"></script>
+    <!--bootstrap js-->
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <!--font-awesome js-->
+    <script src="{{ url_for('static', filename='js/Font-Awesome.js') }}"></script>
+    <!--select2 js-->
+    <script src="{{ url_for('static', filename='js/select2.min.js') }}"></script>
+    <!--slick slider js-->
+    <script src="{{ url_for('static', filename='js/slick.min.js') }}"></script>
+    <!--simplyCountdown js-->
+    <script src="{{ url_for('static', filename='js/simplyCountdown.js') }}"></script>
+    <!--product zoomer js-->
+    <script src="{{ url_for('static', filename='js/jquery.exzoom.js') }}"></script>
+    <!--nice-number js-->
+    <script src="{{ url_for('static', filename='js/jquery.nice-number.min.js') }}"></script>
+    <!--counter js-->
+    <script src="{{ url_for('static', filename='js/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.countup.min.js') }}"></script>
+    <!--add row js-->
+    <script src="{{ url_for('static', filename='js/add_row_custon.js') }}"></script>
+    <!--multiple-image-video js-->
+    <script src="{{ url_for('static', filename='js/multiple-image-video.js') }}"></script>
+    <!--sticky sidebar js-->
+    <script src="{{ url_for('static', filename='js/sticky_sidebar.js') }}"></script>
+    <!--price ranger js-->
+    <script src="{{ url_for('static', filename='js/ranger_jquery-ui.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/ranger_slider.js') }}"></script>
+    <!--isotope js-->
+    <script src="{{ url_for('static', filename='js/isotope.pkgd.min.js') }}"></script>
+    <!--venobox js-->
+    <script src="{{ url_for('static', filename='js/venobox.min.js') }}"></script>
+    <!--classycountdown js-->
+    <script src="{{ url_for('static', filename='js/jquery.classycountdown.js') }}"></script>
+
+    <!--main/custom js-->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 
 </html>

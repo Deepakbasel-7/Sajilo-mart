@@ -2,31 +2,97 @@
 
 {% block title %} Wishlist {% endblock %}
 
-{% block body %}
-<div class="container mt-4">
-    <h2 class="text-center">Your Wishlist</h2>
-    <hr>
-    {% if wishlist_items %}
-        <ul class="list-group">
-            {% for item in wishlist_items %}
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <div>
-                        <strong>{{ item.product.product_name }}</strong><br>
-                        <small>Price: Rs. {{ item.product.current_price }}</small>
+{% block content %}
+
+<!--============================
+        CART VIEW PAGE START
+    ==============================-->
+<section id="wsus__cart_view">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="wsus__cart_list wishlist">
+                    <div class="table-responsive">
+                        <table>
+                            <tbody>
+                                <tr class="d-flex">
+                                    <th class="wsus__pro_img">
+                                        product item
+                                    </th>
+
+                                    <th class="wsus__pro_name">
+                                        product details
+                                    </th>
+
+                                    <th class="wsus__pro_status">
+                                        status
+                                    </th>
+
+                                    <th class="wsus__pro_select">
+                                        quantity
+                                    </th>
+
+                                    <th class="wsus__pro_tk">
+                                        price
+                                    </th>
+
+                                    <th class="wsus__pro_icon">
+                                        action
+                                    </th>
+                                </tr>
+                                {% if wishlist_items %}
+                                {% for item in wishlist_items %}
+                                <tr class="d-flex">
+                                    <td class="wsus__pro_img"><img src="{{ item.product_picture }}" alt="product"
+                                            class="img-fluid w-100">
+<form action="/remove-from-wishlist/{{ item.id }}" method="POST" style="display:inline;">
+    <button type="submit" class="btn btn-link p-0 border-0 bg-transparent">
+        <i class="far fa-times"></i>
+    </button>
+</form>
+                                    </td>
+
+                                    <td class="wsus__pro_name">
+                                        <p>{{ item.product.product_name }}</p>
+                                    </td>
+
+                                    <td class="wsus__pro_status">
+                                        <p>in stock</p>
+                                    </td>
+
+                                    <td class="wsus__pro_select">
+                                        <form class="select_number">
+                                            <input class="number_area" type="text" min="1" max="100" value="{{ item.quantity }}" />
+                                        </form>
+                                    </td>
+
+                                    <td class="wsus__pro_tk">
+                                        <h6>Rs. {{ item.product.current_price }}</h6>
+                                    </td>
+
+                                    <td class="wsus__pro_icon">
+                                        <a class="common_btn" href="#">add to cart</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                {% else %}
+                                <td class="d-flex">
+                                    <p class="text-center text-muted mt-4">
+                                        Your wishlist is empty. <a href="/" class="text-decoration-underline">Browse
+                                            products</a>
+                                    </p>
+                                </td>
+                                {% endif %}
+                            </tbody>
+                        </table>
                     </div>
-                    <div>
-                        <span class="badge bg-secondary">Quantity: {{ item.quantity }}</span>
-                        <form action="/remove-from-wishlist/{{ item.id }}" method="post" class="d-inline">
-                            <button type="submit" class="btn btn-danger btn-sm">Remove</button>
-                        </form>
-                    </div>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p class="text-center text-muted mt-4">
-            Your wishlist is empty. <a href="/" class="text-decoration-underline">Browse products</a>
-        </p>
-    {% endif %}
-</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--============================
+        CART VIEW PAGE END
+    ==============================-->
+
 {% endblock %}
