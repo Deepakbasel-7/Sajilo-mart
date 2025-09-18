@@ -1,0 +1,402 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+    <!--============================
+        CART VIEW PAGE START
+    ==============================-->
+    <section id="wsus__cart_view">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9">
+                    <div class="wsus__cart_list">
+                        <div class="table-responsive">
+                            <table>
+                                <tbody>
+                                    <tr class="d-flex">
+                                        <th class="wsus__pro_img">
+                                            product item
+                                        </th>
+
+                                        <th class="wsus__pro_name">
+                                            product details
+                                        </th>
+
+                                        <th class="wsus__pro_status">
+                                            status
+                                        </th>
+
+                                        <th class="wsus__pro_select">
+                                            quantity
+                                        </th>
+
+                                        <th class="wsus__pro_tk">
+                                            price
+                                        </th>
+
+                                        <th class="wsus__pro_icon">
+                                            <a href="#" class="common_btn clear-cart">clear cart</a>
+                                        </th>
+                                    </tr>
+                                    {% for item in cart %}
+                                    <tr class="d-flex cart-item" data-item-id="{{ item.id }}">
+                                        <td class="wsus__pro_img"><img src="{{ item.product.product_picture }}" alt="product"
+                                                class="img-fluid w-100">
+                                        </td>
+
+                                        <td class="wsus__pro_name">
+                                            <p>{{ item.product.name if item.product.name else "men's fashion sholder leather bag" }}</p>
+                                            <span>color: red</span>
+                                            <span>size: XL</span>
+                                        </td>
+
+                                        <td class="wsus__pro_status">
+                                            <p>in stock</p> 
+                                        </td>
+
+                                        <td class="wsus__pro_select">
+                                            <div class="quantity-controls">
+                                                <button type="button" class="quantity-btn decrease-btn">-</button>
+                                                <input class="quantity-input" type="number" min="1" max="100" value="{{ item.quantity }}" data-item-id="{{ item.id }}" data-price="{{ item.product.current_price }}"/>
+                                                <button type="button" class="quantity-btn increase-btn">+</button>
+                                            </div>
+                                        </td>
+
+                                        <td class="wsus__pro_tk">
+                                            <h6 class="item-total">Rs {{ item.product.current_price * item.quantity }}</h6>
+                                        </td>
+
+                                        <td class="wsus__pro_icon">
+                                            <a href="#" class="remove-item" data-item-id="{{ item.id }}"><i class="far fa-times"></i></a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3">
+                    <div class="wsus__cart_list_footer_button" id="sticky_sidebar">
+                        <h6>total cart</h6>
+                        <p>subtotal: <span id="subtotal">Rs {{ subtotal }}</span></p>
+                        <p>delivery: <span id="delivery">Rs {{ delivery }}</span></p>
+                        <p>discount: <span id="discount">Rs {{ discount }}</span></p>
+                        <p class="total"><span>total:</span> <span id="total">Rs {{ total }}</span></p>
+
+                        <form id="coupon-form">
+                            <input type="text" id="coupon-code" placeholder="Coupon Code">
+                            <button type="submit" class="common_btn">apply</button>
+                        </form>
+                        <a class="common_btn mt-4 w-100 text-center" href="check_out.html">checkout</a>
+                        <a class="common_btn mt-1 w-100 text-center" href="product_grid_view.html">
+                            <i class="fab fa-shopify"></i> go shop
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="wsus__single_banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6">
+                    <div class="wsus__single_banner_content">
+                        <div class="wsus__single_banner_img">
+                            <img src="images/single_banner_2.jpg" alt="banner" class="img-fluid w-100">
+                        </div>
+                        <div class="wsus__single_banner_text">
+                            <h6>sell on <span>35% off</span></h6>
+                            <h3>smart watch</h3>
+                            <a class="shop_btn" href="#">shop now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6">
+                    <div class="wsus__single_banner_content single_banner_2">
+                        <div class="wsus__single_banner_img">
+                            <img src="images/single_banner_3.jpg" alt="banner" class="img-fluid w-100">
+                        </div>
+                        <div class="wsus__single_banner_text">
+                            <h6>New Collection</h6>
+                            <h3>Cosmetics</h3>
+                            <a class="shop_btn" href="#">shop now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--============================
+          CART VIEW PAGE END
+    ==============================-->
+
+<style>
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.quantity-btn {
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.quantity-btn:hover {
+    background: #e9ecef;
+}
+
+.quantity-input {
+    width: 60px;
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // Handle quantity input changes (direct typing)
+    document.querySelectorAll('.quantity-input').forEach(input => {
+        input.addEventListener('change', function() {
+            updateCartQuantity(this);
+        });
+        
+        // Also handle blur event for better UX
+        input.addEventListener('blur', function() {
+            updateCartQuantity(this);
+        });
+    });
+
+    // Handle increase button clicks
+    document.querySelectorAll('.increase-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const input = this.previousElementSibling;
+            let currentValue = parseInt(input.value) || 1;
+            input.value = currentValue + 1;
+            updateCartQuantity(input);
+        });
+    });
+
+    // Handle decrease button clicks
+    document.querySelectorAll('.decrease-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const input = this.nextElementSibling;
+            let currentValue = parseInt(input.value) || 1;
+            if (currentValue > 1) {
+                input.value = currentValue - 1;
+                updateCartQuantity(input);
+            }
+        });
+    });
+
+    // Handle item removal
+    document.querySelectorAll('.remove-item').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const itemId = this.dataset.itemId;
+            removeCartItem(itemId);
+        });
+    });
+
+    // Handle clear cart
+    document.querySelector('.clear-cart').addEventListener('click', function(e) {
+        e.preventDefault();
+        if (confirm('Are you sure you want to clear the entire cart?')) {
+            clearCart();
+        }
+    });
+
+    // Handle coupon application
+    document.getElementById('coupon-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const couponCode = document.getElementById('coupon-code').value.trim();
+        if (couponCode) {
+            applyCoupon(couponCode);
+        }
+    });
+});
+
+function updateCartQuantity(input) {
+    const itemId = input.dataset.itemId;
+    const quantity = parseInt(input.value) || 1;
+    const cartRow = input.closest('.cart-item');
+    
+    // Validate quantity
+    if (quantity < 1) {
+        input.value = 1;
+        return;
+    }
+    
+    // Show loading state
+    cartRow.classList.add('loading');
+    
+    fetch(`/update-cart/${itemId}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-Requested-With": "XMLHttpRequest"
+        },
+        body: JSON.stringify({ quantity: quantity })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.error) {
+            alert(data.error);
+            return;
+        }
+
+        // Update the item total in the row
+        const itemTotalElement = cartRow.querySelector(".item-total");
+        if (itemTotalElement) {
+            itemTotalElement.textContent = `Rs ${data.item_total}`;
+        }
+
+        // Update cart summary
+        updateCartSummary(data);
+        
+        console.log('Cart updated successfully');
+    })
+    .catch(error => {
+        console.error('Error updating cart:', error);
+        alert('Error updating cart. Please try again.');
+    })
+    .finally(() => {
+        // Remove loading state
+        cartRow.classList.remove('loading');
+    });
+}
+
+function removeCartItem(itemId) {
+    fetch(`/remove-cart-item/${itemId}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "X-Requested-With": "XMLHttpRequest"
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            alert(data.error);
+            return;
+        }
+        
+        // Remove the row from DOM
+        const cartRow = document.querySelector(`[data-item-id="${itemId}"]`);
+        if (cartRow) {
+            cartRow.remove();
+        }
+        
+        // Update cart summary
+        updateCartSummary(data);
+        
+        // If cart is empty, you might want to show an empty cart message
+        if (data.cart_empty) {
+            location.reload(); // Or show empty cart message
+        }
+    })
+    .catch(error => {
+        console.error('Error removing item:', error);
+        alert('Error removing item. Please try again.');
+    });
+}
+
+function clearCart() {
+    fetch('/clear-cart', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-Requested-With": "XMLHttpRequest"
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            alert(data.error);
+            return;
+        }
+        
+        // Reload the page to show empty cart
+        location.reload();
+    })
+    .catch(error => {
+        console.error('Error clearing cart:', error);
+        alert('Error clearing cart. Please try again.');
+    });
+}
+
+function applyCoupon(couponCode) {
+    fetch('/apply-coupon', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-Requested-With": "XMLHttpRequest"
+        },
+        body: JSON.stringify({ coupon_code: couponCode })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            alert(data.error);
+            return;
+        }
+        
+        // Update cart summary with new discount
+        updateCartSummary(data);
+        alert('Coupon applied successfully!');
+    })
+    .catch(error => {
+        console.error('Error applying coupon:', error);
+        alert('Error applying coupon. Please try again.');
+    });
+}
+
+function updateCartSummary(data) {
+    // Update summary totals
+    const subtotalEl = document.querySelector("#subtotal");
+    const deliveryEl = document.querySelector("#delivery");
+    const discountEl = document.querySelector("#discount");
+    const totalEl = document.querySelector("#total");
+    
+    if (subtotalEl && data.subtotal !== undefined) {
+        subtotalEl.textContent = `Rs ${data.subtotal}`;
+    }
+    
+    if (deliveryEl && data.delivery !== undefined) {
+        deliveryEl.textContent = `Rs ${data.delivery}`;
+    }
+    
+    if (discountEl && data.discount !== undefined) {
+        discountEl.textContent = `Rs ${data.discount}`;
+    }
+    
+    if (totalEl && data.total !== undefined) {
+        totalEl.textContent = `Rs ${data.total}`;
+    }
+}
+</script>
+
+{% endblock %}

@@ -264,7 +264,10 @@
                                                 </p>
                                                 <a class="wsus__pro_name" href="#">{{ item.product_name }}</a>
                                                 <p class="wsus__price">Rs.{{ item.current_price }}<del>Rs.{{ item.previous_price }}<del></p>
-                                                <a class="add_cart" href="#">add to cart</a>
+                                                
+<form action="{{ url_for('views.add_to_cart', item_id=item.id) }}" method="POST" style="display:inline;">
+    <button type="submit" class="add_cart">add to cart</button>
+</form>
                                             </div>
                                         </div>
                                     </div>

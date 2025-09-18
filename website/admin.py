@@ -259,9 +259,6 @@ def display_reviews():
     return render_template('display_reviews.html', reviews=reviews)
 
 
-
-
-
 @admin.route('/wishlist')
 @login_required
 def wishlist():
